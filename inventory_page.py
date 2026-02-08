@@ -17,18 +17,41 @@ def login():
     text_username.send_keys("standard_user")
     text_password.send_keys("secret_sauce")
     submit_button.click()
-    
+    time.sleep(5)
 
 #chalena hyaa 
-def filter():
-   filter = driver.find_element(by=By.CLASS_NAME, value = "product_sort_container")
-   filter.click()
 
+
+    # sort_dropdown = Select(driver.find_element(By.CLASS_NAME, "product_sort_container"))
+    # sort_dropdown.select_by_visible_text("Name(Z to A)")
+    # time.sleep(5)
+
+
+    # sort_dropdown = Select(driver.find_element(By.CLASS_NAME, "product_sort_container"))
+    # sort_dropdown.select_by_visible_text("Price(low to high)")
+    # time.sleep(5)
+
+def filter_hilo():
+    sort_dropdown = Select(driver.find_element(By.CLASS_NAME, "product_sort_container"))
+    sort_dropdown.select_by_visible_text("Price (high to low)")
+    time.sleep(5)
+
+def filter_lohi():
+    sort_dropdown = Select(driver.find_element(By.CLASS_NAME, "product_sort_container"))
+    sort_dropdown.select_by_visible_text("Price (low to high)")
+    time.sleep(5)
+
+def filter_za():
+    sort_dropdown = Select(driver.find_element(By.CLASS_NAME, "product_sort_container"))
+    sort_dropdown.select_by_visible_text("Name (Z to A)")
+    time.sleep(5)
 
 
 def main():
     login()
-    filter()
+    filter_hilo()
+    filter_lohi()
+    filter_za()
 
 
 main()
