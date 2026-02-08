@@ -19,17 +19,6 @@ def login():
     submit_button.click()
     time.sleep(5)
 
-#chalena hyaa 
-
-
-    # sort_dropdown = Select(driver.find_element(By.CLASS_NAME, "product_sort_container"))
-    # sort_dropdown.select_by_visible_text("Name(Z to A)")
-    # time.sleep(5)
-
-
-    # sort_dropdown = Select(driver.find_element(By.CLASS_NAME, "product_sort_container"))
-    # sort_dropdown.select_by_visible_text("Price(low to high)")
-    # time.sleep(5)
 
 def filter_hilo():
     sort_dropdown = Select(driver.find_element(By.CLASS_NAME, "product_sort_container"))
@@ -46,12 +35,48 @@ def filter_za():
     sort_dropdown.select_by_visible_text("Name (Z to A)")
     time.sleep(5)
 
+def media_link():
+    link_twitter = driver.find_element(by=By.CLASS_NAME, value = "social_twitter")
+    link_twitter.click()
+    time.sleep(5)
+    
+    link_facebook = driver.find_element(by=By.CLASS_NAME, value = "social_facebook")
+    link_facebook.click()
+    time.sleep(5)
+
+    link_linkedin = driver.find_element(by=By.CLASS_NAME, value = "social_linkedin")
+    link_linkedin.click()
+    time.sleep(5)
+
+
+def test_about_button():
+    burgerbutton = driver.find_element(By.CLASS_NAME, "bm-burger-button")
+    burgerbutton.click()
+
+    about = driver.find_element(By.ID, "about_sidebar_link")
+    about.click()
+    time.sleep(5)
+    driver.get("https://www.saucedemo.com/inventory.html")
+    time.sleep(5)
+    
+
+def test_logout_button():
+    burgerbutton = driver.find_element(By.CLASS_NAME, "bm-burger-button")
+    burgerbutton.click()
+
+    logout = driver.find_element(By.ID, "logout_sidebar_link")
+    logout.click()
+    time.sleep(5)
+
 
 def main():
     login()
     filter_hilo()
     filter_lohi()
     filter_za()
+    media_link()
+    test_about_button()
+    test_logout_button()
 
 
 main()
