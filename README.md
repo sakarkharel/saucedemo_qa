@@ -37,7 +37,10 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv --version
 ```
 ### Clone the repo 
+```bash
 git clone https://github.com/sakarkharel/saucedemo_qa
+```
+
 ```bash
 cd saucedemo_qa
 ```
