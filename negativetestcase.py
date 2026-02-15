@@ -57,6 +57,12 @@ def checkout_steptwo():
 
 
 def main():
+    driver = webdriver.Chrome()
+    driver.get("https://www.saucedemo.com/")
+    title = driver.title
+    driver.implicitly_wait(5)
+
+
     login()
     homepage()
     cart()
