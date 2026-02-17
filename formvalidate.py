@@ -42,6 +42,7 @@ def checkout_stepone():
     # driver.get("https://www.saucedemo.com/checkout-step-one.html")
 
 
+#Negative testing scenarios 
 def validate_checkout_form():
     driver.get("https://www.saucedemo.com/checkout-step-one.html")
     time.sleep(2)
@@ -90,6 +91,9 @@ def validate_checkout_form():
 #     time.sleep(2)
 
 def main():
+    driver = webdriver.Chrome()
+    driver.get("https://www.saucedemo.com/")
+    driver.implicitly_wait(5)
     login()
     homepage()
     cart()
@@ -99,7 +103,9 @@ def main():
     # checkout_steptwo()
     driver.quit()
 
-main()
+
+if __name__ == '__main__':
+    main()
 
 
 
