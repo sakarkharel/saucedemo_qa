@@ -4,10 +4,7 @@ from selenium.webdriver.support.ui import Select, WebDriverWait
 import time 
 from selenium.webdriver.support import expected_conditions as EC
 
-driver=webdriver.Chrome()
-driver.get("https://www.saucedemo.com/")
-title = driver.title
-driver.implicitly_wait(5)
+
 
 def login():
     text_username = driver.find_element(by=By.ID,value ="user-name")
@@ -70,6 +67,10 @@ def test_logout_button():
 
 
 def main():
+    driver=webdriver.Chrome()
+    driver.get("https://www.saucedemo.com/")
+    title = driver.title
+    driver.implicitly_wait(5)
     login()
     filter_hilo()
     filter_lohi()
@@ -79,4 +80,5 @@ def main():
     test_logout_button()
 
 
-main()
+if __name__ == '__main__':
+    main()
