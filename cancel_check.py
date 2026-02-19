@@ -6,10 +6,7 @@ from selenium.webdriver.support.ui import Select, WebDriverWait
 import time 
 from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome()
-driver.get("https://www.saucedemo.com/")
-title = driver.title
-driver.implicitly_wait(5)
+
 
 def continue_shopping():
     text_username = driver.find_element(by=By.ID,value ="user-name")
@@ -78,9 +75,15 @@ def cancel_checkout_steptwo():
 
 
 def main():
+    driver = webdriver.Chrome()
+    driver.get("https://www.saucedemo.com/")
+    title = driver.title
+    driver.implicitly_wait(5)
     continue_shopping()
     cancel_checkout_stepone()
     cancel_checkout_steptwo()
     driver.quit()
 
-main()
+
+if __name__ == "__main__":
+    main()
