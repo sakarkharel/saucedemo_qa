@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 
 
 
-def test():
+def test(driver):
     text_box = driver.find_element(by=By.NAME, value="my-text")
     submit_button = driver.find_element(by=By.CSS_SELECTOR, value="button")
 
@@ -23,7 +23,7 @@ def main():
     driver.get("https://www.selenium.dev/selenium/web/web-form.html")
     title = driver.title
     driver.implicitly_wait(0.5)
-    test()
+    test(driver)
 
 if __name__ == "__main__":
     main()
