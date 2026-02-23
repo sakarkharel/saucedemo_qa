@@ -2,11 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-driver = webdriver.Chrome()
-driver.get("https://www.saucedemo.com/")
-driver.implicitly_wait(5)
 
-def login():
+
+def login(driver):
     text_username = driver.find_element(By.ID, "user-name")
     text_password = driver.find_element(By.ID, "password")
     submit_button = driver.find_element(By.ID, "login-button")
@@ -16,17 +14,17 @@ def login():
     submit_button.click()
     time.sleep(2)
 
-def homepage():
+def homepage(driver):
     driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
     driver.find_element(By.ID, "add-to-cart-sauce-labs-bike-light").click()
     driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
     time.sleep(2)
 
-def cart():
+def cart(driver):
     driver.find_element(By.ID, "checkout").click()
     time.sleep(2)
 
-def checkout_stepone():
+def checkout_stepone(driver):
     driver.get("https://www.saucedemo.com/checkout-step-one.html")
     text_firstname = driver.find_element(By.ID, "first-name")
     text_lastname = driver.find_element(By.ID, "last-name")
@@ -43,7 +41,7 @@ def checkout_stepone():
 
 
 #Negative testing scenarios 
-def validate_checkout_form():
+def validate_checkout_form(driver):
     driver.get("https://www.saucedemo.com/checkout-step-one.html")
     time.sleep(2)
 
@@ -94,12 +92,12 @@ def main():
     driver = webdriver.Chrome()
     driver.get("https://www.saucedemo.com/")
     driver.implicitly_wait(5)
-    login()
-    homepage()
-    cart()
-    checkout_stepone()
+    login(driver)
+    homepage(driver)
+    cart(driver)
+    checkout_stepone(driver)
     # checkout_steptwo()
-    validate_checkout_form()  
+    validate_checkout_form(driver)  
     # checkout_steptwo()
     driver.quit()
 

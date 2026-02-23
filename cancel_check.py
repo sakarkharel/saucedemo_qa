@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 
-def continue_shopping():
+def continue_shopping(driver):
     text_username = driver.find_element(by=By.ID,value ="user-name")
     text_password = driver.find_element(by=By.ID, value = "password")
     submit_button = driver.find_element(by=By.ID, value = "login-button")
@@ -34,7 +34,7 @@ def continue_shopping():
     button_continueshopping.click()
     time.sleep(3)
 
-def cancel_checkout_stepone():
+def cancel_checkout_stepone(driver):
     button_cart = driver.find_element(by=By.CLASS_NAME, value="shopping_cart_link")
     button_cart.click()
     time.sleep(3)
@@ -48,7 +48,7 @@ def cancel_checkout_stepone():
     button_cancelstepone.click()
     time.sleep(3)
 
-def cancel_checkout_steptwo():
+def cancel_checkout_steptwo(driver):
 
     button_checkout = driver.find_element(by=By.ID, value= "checkout")
     button_checkout.click()
@@ -72,16 +72,14 @@ def cancel_checkout_steptwo():
     time.sleep(2)
 
 
-
-
 def main():
     driver = webdriver.Chrome()
     driver.get("https://www.saucedemo.com/")
     title = driver.title
     driver.implicitly_wait(5)
-    continue_shopping()
-    cancel_checkout_stepone()
-    cancel_checkout_steptwo()
+    continue_shopping(driver)
+    cancel_checkout_stepone(driver)
+    cancel_checkout_steptwo(driver)
     driver.quit()
 
 
