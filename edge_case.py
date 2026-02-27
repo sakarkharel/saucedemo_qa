@@ -58,10 +58,18 @@ def long_input(driver, long_username,long_password ):
     submit_button.click()
     time.sleep(3)
 
+#refreshing page after entering credentials 
+def refresh(driver):
+    driver.get("https://www.saucedemo.com/")
+    text_username = driver.find_element(by=By.ID, value = "user-name")
+    text_password = driver.find_element(by=By.ID, value = "password")
+    submit_button = driver.find_element(by=By.ID, value = "login-button")
 
-
-
-
+    text_username.send_keys("standard_user")
+    text_password.send_keys("secret_sauce")
+    driver.refresh()
+    time.sleep(3)
+    submit_button.click()
 
 
 def main ():
@@ -76,6 +84,8 @@ def main ():
     case_sensitive(driver)
     lead_trail_space(driver)
     long_input(driver, long_username, long_password)
+    refresh(driver)
+
 
 
 
