@@ -57,5 +57,5 @@ source .venv/bin/activate
 
 ### Run the Automation Script 
 ```bash
-python3 script.py
+python3 smoketesting.py
 ```
