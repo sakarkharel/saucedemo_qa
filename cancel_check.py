@@ -1,78 +1,86 @@
+#checking if cancel button/go back works 
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import Select, WebDriverWait
+import time 
 from selenium.webdriver.support import expected_conditions as EC
 
 
-URL = "https://www.saucedemo.com/"
-USERNAME = "standard_user"
-PASSWORD = "secret_sauce"
-
-
-def wait_for(driver, by, value, timeout=10):
-    return WebDriverWait(driver, timeout).until(
-        EC.element_to_be_clickable((by, value))
-    )
-
-
-def login(driver):
-    wait_for(driver, By.ID, "user-name").send_keys(USERNAME)
-    wait_for(driver, By.ID, "password").send_keys(PASSWORD)
-    wait_for(driver, By.ID, "login-button").click()
-
-
-def add_products(driver):
-    wait_for(driver, By.ID, "add-to-cart-sauce-labs-backpack").click()
-    wait_for(driver, By.ID, "add-to-cart-sauce-labs-bike-light").click()
-
-
-def open_cart(driver):
-    wait_for(driver, By.CLASS_NAME, "shopping_cart_link").click()
-
 
 def continue_shopping(driver):
-    open_cart(driver)
-    wait_for(driver, By.ID, "continue-shopping").click()
+    text_username = driver.find_element(by=By.ID,value ="user-name")
+    text_password = driver.find_element(by=By.ID, value = "password")
+    submit_button = driver.find_element(by=By.ID, value = "login-button")
+    
+    text_username.send_keys("standard_user")
+    text_password.send_keys("secret_sauce")
+    submit_button.click()
+    time.sleep(2)
 
+
+    button_addcartbackpack = driver.find_element(by= By.ID, value ="add-to-cart-sauce-labs-backpack")
+    button_addcartbikelight = driver.find_element(by=By.ID, value = "add-to-cart-sauce-labs-bike-light")
+
+    button_addcartbackpack.click()
+    button_addcartbikelight.click()
+    
+
+    button_cart = driver.find_element(by=By.CLASS_NAME, value="shopping_cart_link")
+    button_cart.click()
+    time.sleep(2)
+
+    button_continueshopping = driver.find_element(By.ID, "continue-shopping")
+    button_continueshopping.click()
+    time.sleep(3)
 
 def cancel_checkout_stepone(driver):
-    open_cart(driver)
+    button_cart = driver.find_element(by=By.CLASS_NAME, value="shopping_cart_link")
+    button_cart.click()
+    time.sleep(3)
 
-    wait_for(driver, By.ID, "checkout").click()
-    wait_for(driver, By.ID, "cancel").click()
 
+    button_checkout = driver.find_element(by=By.ID, value= "checkout")
+    button_checkout.click()
+    time.sleep(3)
+
+    button_cancelstepone = driver.find_element(By.ID, "cancel")
+    button_cancelstepone.click()
+    time.sleep(3)
 
 def cancel_checkout_steptwo(driver):
-    open_cart(driver)
 
-    wait_for(driver, By.ID, "checkout").click()
+    button_checkout = driver.find_element(by=By.ID, value= "checkout")
+    button_checkout.click()
+    time.sleep(3)
 
-    wait_for(driver, By.ID, "first-name").send_keys("Ram")
-    wait_for(driver, By.ID, "last-name").send_keys("Bahadur")
-    wait_for(driver, By.ID, "postal-code").send_keys("44800")
 
-    wait_for(driver, By.ID, "continue").click()
+    text_firstname = driver.find_element(by=By.ID, value = "first-name")
+    text_lastname = driver.find_element(by=By.ID, value = "last-name")
+    text_postalcode = driver.find_element(by=By.ID, value = "postal-code")
+    continue_button = driver.find_element(by=By.ID, value= "continue")
 
-    wait_for(driver, By.ID, "cancel").click()
+    text_firstname.send_keys("Ram")
+    text_lastname.send_keys("Bahadur")
+    text_postalcode.send_keys("44800")
+    time.sleep(3)
+    continue_button.click()
+    time.sleep(3)
+
+    button_cancelsteptwo = driver.find_element(by=By.ID, value = "cancel")
+    button_cancelsteptwo.click()
+    time.sleep(2)
 
 
 def main():
     driver = webdriver.Chrome()
-
-    try:
-        driver.get(URL)
-
-        login(driver)
-        add_products(driver)
-
-        continue_shopping(driver)
-        cancel_checkout_stepone(driver)
-        cancel_checkout_steptwo(driver)
-
-        print("Cancel and Continue Shopping tests completed successfully!")
-
-    finally:
-        driver.quit()
+    driver.get("https://www.saucedemo.com/")
+    title = driver.title
+    driver.implicitly_wait(5)
+    continue_shopping(driver)
+    cancel_checkout_stepone(driver)
+    cancel_checkout_steptwo(driver)
+    driver.quit()
 
 
 if __name__ == "__main__":
