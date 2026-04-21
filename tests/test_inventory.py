@@ -1,6 +1,8 @@
 import pytest 
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 @pytest.fixture
 def logged_in(driver):
@@ -53,6 +55,8 @@ def test_sort_a_to_z(logged_in):
     names = logged_in.get_product_names()
     assert names == sorted(names)
 
+    # social media link check 
+
 def test_sort_z_to_a(logged_in):
     logged_in.sort_products("za")
     names = logged_in.get_product_names()
@@ -69,3 +73,22 @@ def test_facebook(logged_in, driver):
     time.sleep(5)
     driver.switch_to.window(driver.window_handles[1])
     assert "facebook.com" in driver.current_url
+
+def test_linkedin(logged_in, driver):
+    logged_in.click_linkedin()
+    time.sleep(5)
+    driver.switch_to.window(driver.window_handles[1])
+    assert "linkedin.com" in driver.current_url
+
+def test_about(logged_in, driver):
+    logged_in.about_button()
+    WebDriverWait(driver, 10).until(
+        EC.url_contains("saucelabs")
+    )
+    assert "saucelabs" in driver.current_url
+
+def test_logout(logged_in, driver):
+    logged_in.logout_button()
+    time.sleep(5)
+    assert driver.current_url == "https://www.saucedemo.com/"
+    time.sleep(3)

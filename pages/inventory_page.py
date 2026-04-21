@@ -17,6 +17,8 @@ class InventoryPage:
     TWITTER = (By.CLASS_NAME, "social_twitter")
     FACEBOOK = (By.CLASS_NAME, "social_facebook")
     LINKEDIN = (By.CLASS_NAME, "social_linkedin")
+    ABOUT = (By.ID, "about_sidebar_link")
+    LOGOUT = (By.ID, "logout_sidebar_link")
 
 
     def __init__(self, driver):
@@ -123,6 +125,34 @@ class InventoryPage:
         linkedin_element
         )
         linkedin_element.click()
+
+    # methods for burger button
+
+    def about_button(self):
+        burger_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.MENU_BUTTON)
+        )
+        burger_element.click()
+        about_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.ABOUT)
+        )
+        about_element.click()
+
+
+    def logout_button(self):
+        burger_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.MENU_BUTTON)
+        )
+        burger_element.click()
+        logout_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.LOGOUT)
+        )
+        logout_element.click()
+
+        
+
+    
+
     
 
 
