@@ -14,6 +14,10 @@ class InventoryPage:
     CART_ICON = (By.CLASS_NAME, "shopping_cart_link")
     SORT_DROPDOWN = (By.CLASS_NAME, "product_sort_container")
     MENU_BUTTON = (By.ID, "react-burger-menu-btn")
+    TWITTER = (By.CLASS_NAME, "social_twitter")
+    FACEBOOK = (By.CLASS_NAME, "social_facebook")
+    LINKEDIN = (By.CLASS_NAME, "social_linkedin")
+
 
     def __init__(self, driver):
         self.driver = driver
@@ -86,4 +90,42 @@ class InventoryPage:
     # def open_menu(self):
     #     self.driver.find_element(*self.MENU_BUTTON).click()
 
+    # naviagtes to social media pages 
+    # repeating scroll + click logic per method to ensure stable element interaction
+    def click_twitter(self):
+        twitter_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.TWITTER)
+        )
+        self.driver.execute_script(
+        "arguments[0].scrollIntoView(true);",
+        twitter_element
+        )
+        twitter_element.click()
+        # add exception handling here :
+
+
+    def click_facebook(self):
+        facebook_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.FACEBOOK)
+        )
+        self.driver.execute_script(
+        "arguments[0].scrollIntoView(true);",
+        facebook_element
+        )
+        facebook_element.click()
+
+    def click_linkedin(self):
+        linkedin_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.LINKEDIN)
+        )
+        self.driver.execute_script(
+        "arguments[0].scrollIntoView(true);",
+        linkedin_element
+        )
+        linkedin_element.click()
     
+
+
+
+
+

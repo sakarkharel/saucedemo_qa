@@ -1,7 +1,7 @@
 import pytest 
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
-
+import time
 @pytest.fixture
 def logged_in(driver):
     login = LoginPage(driver)
@@ -57,4 +57,15 @@ def test_sort_z_to_a(logged_in):
     logged_in.sort_products("za")
     names = logged_in.get_product_names()
     assert names == sorted(names, reverse=True)
-    
+
+def test_twitter(logged_in, driver):
+    logged_in.click_twitter()
+    time.sleep(5)
+    driver.switch_to.window(driver.window_handles[1])
+    assert "x.com" in driver.current_url
+
+def test_facebook(logged_in, driver):
+    logged_in.click_facebook()
+    time.sleep(5)
+    driver.switch_to.window(driver.window_handles[1])
+    assert "facebook.com" in driver.current_url
