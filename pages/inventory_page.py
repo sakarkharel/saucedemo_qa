@@ -156,14 +156,3 @@ class InventoryPage:
             EC.element_to_be_clickable(self.LOGOUT)
         )
         logout_element.click()
-
-        
-
-    
-
-    
-
-
-
-
-
