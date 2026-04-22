@@ -69,5 +69,20 @@ def test_checkout_info_validation(logged_in, driver):
 
         driver.refresh()
 
+def test_valid_credentials(logged_in, driver):
+
+    inventory_page = logged_in
+    inventory_page.add_first_item_to_cart()
+
+    cart_page = CartPage(driver)
+    cart_page.click_on_cart()
+    cart_page.checkout()
+
+    checkout_page = CheckoutStepone(driver)
+    checkout_page.checkout_info_firstname("John")
+    checkout_page.checkout_info_lastname("wick")
+    checkout_page.checkout_info_zipcode("11223")
+    checkout_page.checkout_info()
+    assert "step-two" in driver.current_url
 
 

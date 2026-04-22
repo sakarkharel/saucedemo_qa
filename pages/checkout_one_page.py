@@ -18,7 +18,7 @@ class CheckoutStepone:
         self.driver = driver
         self.wait = WebDriverWait(driver,10)
         self.inventory_page = InventoryPage(driver)
-
+    
 
     def checkout_stepone_cancelbutton(self):
         cancel_button = WebDriverWait(self.driver, 10).until(
