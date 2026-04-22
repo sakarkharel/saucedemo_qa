@@ -10,7 +10,8 @@ class CartPage:
     CART_ICON = (By.CLASS_NAME, "shopping_cart_link")
     REMOVE_ITEM = (By.XPATH, "//button[starts-with(@id, 'remove')]")
     CART_BADGE = (By.CLASS_NAME, "shopping_cart_badge")
-
+    CONTINUE_SHOPPING_CART = (By.ID, "continue-shopping")
+    CHECKOUT = (By.ID, "checkout")
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
@@ -42,7 +43,17 @@ class CartPage:
         )
         remove_button.click()
 
+    def cart_continue_shopping_button(self):
+        continue_shopping_button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.CONTINUE_SHOPPING_CART)
+        )
+        continue_shopping_button.click()
 
 
+    def checkout(self):
+        checkout_button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.CHECKOUT)
+        )
+        checkout_button.click()
 
     

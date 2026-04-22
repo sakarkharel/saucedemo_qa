@@ -25,10 +25,30 @@ def test_click_on_cart(logged_in, driver):
     time.sleep(5)
     assert "cart" in driver.current_url
 
+#remove item not wring may be because it doesnt have anything to remove ??
 def test_remove_item(logged_in, driver):
+    inventory_page = logged_in
+    inventory_page.add_first_item_to_cart()
+    assert inventory_page.get_cart_count() == "1"
+
     driver.get("https://www.saucedemo.com/cart.html")
-    cart_page = CartPage(driver)
+    cart_page = CartPage(driver) ### finally this worked !! thank god !!!! IMPORTANT !!!!
+    cart_page.click_on_cart()
+    time.sleep(2)
+
+
     cart_page.remove_item()
+    time.sleep(3)
+    # assert cart_page.is_cart_empty() == True 
+
+
+
+
+
+
+    # driver.get("https://www.saucedemo.com/cart.html")
+    # cart_page = CartPage(driver)
+    # cart_page.remove_item()
 
     # WebDriverWait(driver, 10).until(
     #     lambda driver: cart_page.find_element_amount() == "0"
@@ -39,8 +59,14 @@ def test_remove_item(logged_in, driver):
     # assert cart_count == "0", f"Expected cart count to be '0', but got {cart_count}"
 
 
+def test_continue_shopping(logged_in, driver):
+    driver.get("https://www.saucedemo.com/cart.html")
+    cart_page = CartPage(driver)
+    cart_page.cart_continue_shopping_button()
 
-
-
+def test_checkout(logged_in, driver):
+    driver.get("https://www.saucedemo.com/cart.html")
+    cart_page = CartPage(driver)
+    cart_page.checkout()
 
 
