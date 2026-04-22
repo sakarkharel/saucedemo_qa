@@ -26,6 +26,10 @@ def test_add_to_cart_updates_badge(logged_in):
     logged_in.add_first_item_to_cart()
     assert logged_in.get_cart_count() == "1"
 
+def test_cart_icon_click(logged_in, driver):
+    logged_in.click_on_cart()
+    assert "cart" in driver.current_url
+
 def test_remove_from_cart(logged_in):
     logged_in.add_first_item_to_cart()
     logged_in.remove_first_item()

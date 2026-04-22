@@ -48,6 +48,12 @@ class InventoryPage:
         )
         buttons.click()
 
+    def click_on_cart(self):
+        cart_buttons = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.CART_ICON)
+        )
+        cart_buttons.click()
+
     # def add_item_by_index(self, index):
     #     buttons = WebDriverWait(self.driver, 10).until(
     #         EC.visibility_of_all_elements_located(self.ADD_TO_CART_BUTTONS)
@@ -55,6 +61,8 @@ class InventoryPage:
     #     buttons[index].click()
     
     def remove_first_item(self):
+        if "cart" in self.driver.current_url:
+             self.driver.get("https://www.saucedemo.com/inventory.html") 
         buttons = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.REMOVE_BUTTONS)
         )
