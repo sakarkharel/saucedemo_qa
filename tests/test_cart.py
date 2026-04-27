@@ -90,6 +90,8 @@ def test_continue_shopping(logged_in, driver):
 
     #continue shopping button tesintg 
     cart_page.cart_continue_shopping_button()
+    assert "inventory" in driver.current_url # new line added
+
 
 
 
@@ -105,5 +107,6 @@ def test_checkout(logged_in, driver):
     assert "cart" in driver.current_url
 
     cart_page.checkout()
+    assert "step-one" in driver.current_url
 
 
