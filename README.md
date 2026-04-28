@@ -57,5 +57,6 @@ source .venv/bin/activate
 
 ### Run the Automation Script 
 ```bash
-pytest -v tests/test_login.py
+pytest tests/ -v 
 ```
+
